@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>Centro de Adopción de Perritos</title>
+    <style>
+        body {
+            background-color: #fdf6e3; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* Título Principal */
+        h1 { color: #5d4037; margin-bottom: 20px; font-size: 2.5em; }
+
+        /* NUEVO: Botón de Historial */
+        .btn-historial {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 12px 25px;
+            background-color: #8d6e63; /* Color café suave */
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-historial:hover {
+            background-color: #5d4037;
+            transform: scale(1.05);
+        }
+
+        .container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 25px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Tarjetas de Perritos Mejoradas */
+        .dog-card { 
+            background: white;
+            border-radius: 20px; 
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08); 
+            padding: 25px; 
+            width: 240px; 
+            transition: all 0.3s ease;
+            border: 1px solid #efebe9;
+        }
+        .dog-card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+        
+        .dog-card h2 { 
+            color: #ff8a65; /* Color naranja suave para los nombres */
+            margin-top: 0; 
+            font-size: 1.8em;
+        }
+        
+        .dog-card p { 
+            color: #4e342e; 
+            font-size: 1em; 
+            margin: 10px 0;
+        }
+
+        .dog-card strong { color: #8d6e63; }
+        
+        /* Botón Adóptame */
+        .btn-adoptar {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #4caf50; /* Cambiado a verde para que resalte */
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn-adoptar:hover { background-color: #388e3c; }
+
+        /* Mensaje de Lista Vacía */
+        .empty-msg {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            color: #e65100;
+            font-weight: bold;
+            border: 1px dashed #ffb74d;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🐾 Perritos buscando un hogar 🐾</h1>
+    
+    <a href="/historial" class="btn-historial">📋 Ver Historial de Adopciones</a>
+
+    <div class="container">
+        {% for dog in dogs %}
+        <div class="dog-card">
+            <h2>{{ dog[1] }}</h2> 
+            
+            <p><strong>Raza:</strong> {{ dog[2] }}</p> 
+            <p><strong>Edad:</strong> {{ dog[3] }} años</p> 
+            
+            <a href="/adoptar/{{ dog[0] }}" class="btn-adoptar">¡Adóptame!</a>
+        </div>
+        {% else %}
+            <div class="empty-msg">
+                <p>No hay perritos disponibles por ahora. <br> Revisa si tienen 'adopted = 0' en tu base de datos.</p>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

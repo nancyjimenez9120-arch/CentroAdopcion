@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Adopción</title>
+    <style>
+        body {
+            background-color: #fdf6e3;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 400px;
+        }
+        h1 { color: #ff8a65; font-size: 1.5em; text-align: center; }
+        p { color: #5d4037; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box; 
+        }
+        button {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #45a049; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #777; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Estás a punto de adoptar a {{ dog[1] }}</h1>
+        
+        <p style="text-align: center;">{{ dog[1] }} es un {{ dog[2] }} de {{ dog[3] }} años.</p>
+
+        <form action="/confirmar" method="POST">
+            <input type="hidden" name="dog_id" value="{{ dog[0] }}">
+            
+            <input type="text" name="nombre" placeholder="Tu Nombre" required>
+            <input type="text" name="apellido" placeholder="Tu Apellido" required>
+            <input type="text" name="cedula" placeholder="Cédula/ID" required>
+            <input type="text" name="direccion" placeholder="Dirección Completa" required>
+            
+            <button type="submit">¡Confirmar Adopción! 🐾</button>
+        </form>
+        <a href="/" class="back-link">← Volver al catálogo</a>
+    </div>
+</body>
+</html>
