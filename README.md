@@ -19,27 +19,30 @@ Sistema de gestión para un **Centro de Adopción de Mascotas** desarrollado con
 * **Framework:** Flask
 * **Base de Datos:** MySQL
 * **Sistema Operativo:** Linux
-## Pilares del Proyecto
-1. Integridad de Datos (Transacciones SQL)
-Lo más importante del sistema es su fiabilidad. Al procesar una adopción, el código realiza una Transacción Atómica:
 
-**Registra al adoptante en la base de datos.
+Puntos Clave del Proyecto
+Transacciones SQL Atómicas: El sistema utiliza la lógica de COMMIT y ROLLBACK. Esto asegura que el registro del adoptante y el cambio de estado del perro se realicen como una sola unidad; si uno falla, el otro no se guarda, manteniendo la integridad de la base de datos.
 
-**Actualiza el estado del perro a "Adoptado" automáticamente.
+Seguridad contra Inyección SQL: Todas las consultas a la base de datos están parametrizadas, lo que impide que atacantes externos manipulen el sistema a través de los formularios.
 
-**Seguridad: Si alguno de estos pasos falla, el sistema cancela todo (ROLLBACK) para evitar que un perro quede en un "limbo" informativo.
+Interfaz Dinámica (Jinja2): El catálogo se genera en tiempo real. El sistema filtra automáticamente los perros ya adoptados y muestra alertas personalizadas si no hay mascotas disponibles en el inventario.
 
-2. Seguridad y Control
-**Prevención de Inyecciones SQL: Se utilizan consultas parametrizadas para evitar que usuarios malintencionados manipulen la base de datos a través de los formularios.
+Arquitectura Limpia en Linux: El código está organizado de forma modular, separando la configuración, la lógica de base de datos y las rutas del servidor para facilitar el mantenimiento y escalabilidad.
 
-**Filtrado Dinámico: El catálogo solo consulta y muestra registros donde el campo adopted es igual a 0, asegurando que el usuario final solo vea opciones reales.
+Tecnologías Utilizadas
+Lenguaje: Python 3 (entorno virtual venv).
 
-3. Desarrollo en Entorno Linux
-El proyecto está optimizado para entornos Linux, utilizando herramientas de terminal para la gestión de dependencias y el control de versiones con Git, lo que facilita su despliegue en servidores reales.
+Framework: Flask (manejo de rutas y plantillas).
 
-## Componentes Principales
-**Backend: Lógica de rutas y conexión a base de datos en Python.
+Base de Datos: MySQL Server (modelo relacional).
 
-**Frontend: Plantillas dinámicas en HTML que responden a los datos del servidor.
+S.O.: Linux (desarrollo y despliegue vía terminal).
 
-**Base de Datos: Estructura relacional en MySQL para el almacenamiento persistente.
+Estructura del Repositorio
+app.py: Controlador principal de las peticiones.
+
+database.py: Funciones de conexión y transacciones SQL.
+
+templates/: Vistas dinámicas en HTML.
+
+static/: Estilos CSS y recursos visuales.
