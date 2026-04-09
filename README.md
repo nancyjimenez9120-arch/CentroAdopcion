@@ -11,7 +11,7 @@ Sistema de gestión para un **Centro de Adopción de Mascotas** desarrollado con
 ## Funcionalidades
 * **Catálogo:** Visualización de perritos desde MySQL.
 * **Adopciones:** Formulario para registrar nuevos dueños.
-* **Transacciones:** Uso de SQL para asegurar que los datos se guarden correctamente.
+* **Registro de Adopción:** Uso de SQL para asegurar que los datos se guarden correctamente.
 * **Historial:** Registro de todas las adopciones realizadas.
 
 ## Tecnologías
