@@ -4,6 +4,8 @@ Sistema de gestión para un **Centro de Adopción de Mascotas** desarrollado con
 
 ## Capturas del Proyecto
 ![Catálogo](catalogo.png)
+![Formulario](formulario.png)
+![Registro](registro.png)
 ![Historial](historial.png)
 
 ## Funcionalidades
